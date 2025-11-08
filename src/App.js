@@ -2,7 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Users, Trophy, LogOut, Copy, Check, AlertCircle } from 'lucide-react';
 import io from 'socket.io-client';
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001';
+// Auto-detect socket URL: use environment variable, or current hostname in production, or localhost for dev
+const getSocketURL = () => {
+  if (process.env.REACT_APP_SOCKET_URL) {
+    return process.env.REACT_APP_SOCKET_URL;
+  }
+  // In production (on Render), use the current hostname
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    return `https://${window.location.hostname}`;
+  }
+  // Development fallback
+  return 'http://localhost:3001';
+};
+
+const SOCKET_URL = getSocketURL();
 
 const TicTacToeGame = () => {
   const [screen, setScreen] = useState('login');
