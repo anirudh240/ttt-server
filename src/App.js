@@ -4,15 +4,16 @@ import io from 'socket.io-client';
 
 // Auto-detect socket URL: use environment variable, or current hostname in production, or localhost for dev
 const getSocketURL = () => {
+  // Always use current hostname in production (on Render)
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    const url = `https://${window.location.hostname}`;
+    console.log('Auto-detected socket URL from hostname:', url);
+    return url;
+  }
+  // Use environment variable if set (for local development with custom backend)
   if (process.env.REACT_APP_SOCKET_URL) {
     console.log('Using REACT_APP_SOCKET_URL:', process.env.REACT_APP_SOCKET_URL);
     return process.env.REACT_APP_SOCKET_URL;
-  }
-  // In production (on Render), use the current hostname
-  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    const url = `https://${window.location.hostname}`;
-    console.log('Auto-detected socket URL:', url);
-    return url;
   }
   // Development fallback
   console.log('Using development fallback: http://localhost:3001');
@@ -21,6 +22,8 @@ const getSocketURL = () => {
 
 const SOCKET_URL = getSocketURL();
 console.log('Connecting to Socket.io at:', SOCKET_URL);
+console.log('Current hostname:', window.location.hostname);
+console.log('Current URL:', window.location.href);
 
 const TicTacToeGame = () => {
   const [screen, setScreen] = useState('login');
