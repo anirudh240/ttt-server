@@ -25,7 +25,8 @@ This deploys both frontend and backend together - simplest approach!
    - **Name**: `tictactoe-live` (or any name you like)
    - **Environment**: `Node`
    - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `NODE_ENV=production node server.js`
+   - **Start Command**: `node server.js`
+     - ⚠️ **Important**: Don't include `NODE_ENV=production` in the start command - Render sets env vars separately!
    - **Plan**: Free (or paid if you want)
 
 6. **Set Environment Variables** (IMPORTANT - set these BEFORE first deploy):
