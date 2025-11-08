@@ -1,0 +1,19 @@
+# Render Blueprint - Deploy everything with one click!
+# Note: After first deploy, update REACT_APP_SOCKET_URL in Render dashboard with your actual service URL
+services:
+  - type: web
+    name: tictactoe-live
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: NODE_ENV=production node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        value: "*"  # Allow all origins (update to your Render URL for better security)
+      # REACT_APP_SOCKET_URL will be set in Render dashboard after first deploy
+      # It should be: https://your-service-name.onrender.com
+

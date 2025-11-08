@@ -1,0 +1,14 @@
+# Netlify configuration for frontend deployment
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# Redirect all routes to index.html for React Router (if you add routing later)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables will be set in Netlify dashboard
+# Make sure to set: REACT_APP_SOCKET_URL=https://your-backend-url.com
+
