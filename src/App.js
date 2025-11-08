@@ -5,17 +5,22 @@ import io from 'socket.io-client';
 // Auto-detect socket URL: use environment variable, or current hostname in production, or localhost for dev
 const getSocketURL = () => {
   if (process.env.REACT_APP_SOCKET_URL) {
+    console.log('Using REACT_APP_SOCKET_URL:', process.env.REACT_APP_SOCKET_URL);
     return process.env.REACT_APP_SOCKET_URL;
   }
   // In production (on Render), use the current hostname
   if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    return `https://${window.location.hostname}`;
+    const url = `https://${window.location.hostname}`;
+    console.log('Auto-detected socket URL:', url);
+    return url;
   }
   // Development fallback
+  console.log('Using development fallback: http://localhost:3001');
   return 'http://localhost:3001';
 };
 
 const SOCKET_URL = getSocketURL();
+console.log('Connecting to Socket.io at:', SOCKET_URL);
 
 const TicTacToeGame = () => {
   const [screen, setScreen] = useState('login');
@@ -54,8 +59,9 @@ const TicTacToeGame = () => {
 
     newSocket.on('connect_error', (error) => {
       console.error('Connection error:', error);
+      console.error('Attempted to connect to:', SOCKET_URL);
       setIsConnected(false);
-      setError('Failed to connect to server. Make sure the backend is running on port 3001.');
+      setError(`Failed to connect to server at ${SOCKET_URL}. Check if the backend is running.`);
     });
 
     return () => {
