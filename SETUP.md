@@ -12,7 +12,7 @@ This is a real-time multiplayer Tic-Tac-Toe game built with React and Socket.io.
 
 ## Installation
 
-1. Install all dependencies:
+1. Install all the dependencies:
 ```bash
 npm install
 ```
