@@ -45,7 +45,7 @@ npm start
 2. **Create a Room**: Click "Create New Room" to start a new game
 3. **Share Room ID**: Copy the room ID and share it with a friend
 4. **Join Room**: Your friend enters the room ID and clicks "Join Game"
-5. **Play**: Take turns making moves - the game synchronizes in real-time!
+5. **Play**: Take turns making moves - the game synchronizes and works real-time!
 
 ## Architecture
 
