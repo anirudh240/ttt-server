@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Users, Trophy, LogOut, Copy, Check, AlertCircle } from 'lucide-react';
 import io from 'socket.io-client';
+import math
 
 // Auto-detect socket URL: use environment variable, or current hostname in production, or localhost for dev
 const getSocketURL = () => {
