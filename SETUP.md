@@ -9,7 +9,7 @@ This is a real-time multiplayer Tic-Tac-Toe game built with React and Socket.io.
 - ✅ Live chat during games
 - ✅ Match history tracking
 - ✅ Turn-based gameplay with proper synchronization
-Good overall performance
+
 
 ## Installation
 
