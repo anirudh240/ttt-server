@@ -18,7 +18,7 @@ Your app is now **production-ready**! Here's how to deploy it.
 Railway automatically:
 - Builds your React app
 - Runs your server
-- Handles environment variables
+- Handles environment variables(enV)
 
 ### Option 2: Deploy to Heroku
 
